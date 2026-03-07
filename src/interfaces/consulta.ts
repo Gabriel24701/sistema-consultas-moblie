@@ -12,7 +12,9 @@ export interface Consulta {
 }
 
 // src/types/paciente.ts  
-export type Paciente = {
+export interface Paciente {
   nome: string;
   cpf: string;
-};
+  email: string;
+  telefone?: string;
+}
