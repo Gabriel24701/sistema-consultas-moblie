@@ -35,6 +35,57 @@ export default function ConsultaCard({
           {consulta.status.toUpperCase()}
         </Text>
       </View>
+
+      <View style={styles.secao}>
+        <Text style={styles.label}>Médico</Text>
+        <Text style={styles.info}>{consulta.medico.nome}</Text>
+        <Text style={styles.info}>{consulta.medico.especialidade.nome}</Text>
+      </View>
+
+      <View style={styles.secao}>
+        <Text style={styles.label}>Paciente</Text>
+        <Text style={styles.info}>{consulta.paciente.nome}</Text>
+        <Text style={styles.info}>{consulta.paciente.cpf}</Text>
+      </View>
+
+      <View style={styles.secao}>
+        <Text style={styles.label}>Data</Text>
+        <Text style={styles.info}>{formatarData(consulta.data)}</Text>
+      </View>
+
+      <View style={styles.secao}>
+        <Text style={styles.label}>Valor</Text>
+        <Text style={styles.valor}>{formatarValor(consulta.valor)}</Text>
+      </View>
+
+      {consulta.observacoes ? (
+        <View style={styles.secao}>
+          <Text style={styles.label}>Observações</Text>
+          <Text style={styles.observacoes}>{consulta.observacoes}</Text>
+        </View>
+      ) : null}
+
+      <View style={styles.acoes}>
+        {onConfirmar ? (
+          <View style={styles.botaoContainer}>
+            <Button
+              title="Confirmar"
+              onPress={onConfirmar}
+              disabled={consulta.status === "confirmada"}
+            />
+          </View>
+        ) : null}
+        {onCancelar ? (
+          <View style={styles.botaoContainer}>
+            <Button
+              title="Cancelar"
+              onPress={onCancelar}
+              color="#F44336"
+              disabled={consulta.status === "cancelada"}
+            />
+          </View>
+        ) : null}
+      </View>
     </View>
   );
 }
