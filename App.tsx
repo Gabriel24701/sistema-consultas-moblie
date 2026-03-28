@@ -1,5 +1,36 @@
 import React from "react";
-import { Home } from "./src/screens";
+// Importa componentes do React Navigation
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// Importa as telas
+import Home from "./src/screens/Home";
+import Admin from "./src/screens/Admin";
+
+// Cria o navegador
+const Stack = createNativeStackNavigator();
+
 export default function App() {
-  return <Home />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: "#2196F3" }, // Cor do cabeçalho
+          headerTintColor: "#fff", // Cor do texto do cabeçalho
+          headerTitleStyle: { fontWeight: "bold" }, // Estilo do título
+        }}
+      >
+        {/* Tela Home - tela inicial */}
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ title: "Minhas Consultas" }}
+        />
+        <Stack.Screen
+          name="Admin"
+          component={Admin}
+          options={{ title: "Painel Administrativo" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
