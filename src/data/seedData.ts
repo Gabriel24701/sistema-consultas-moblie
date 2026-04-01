@@ -87,3 +87,27 @@ export const medicosIniciais: Medico[] = [
     ativo: true,
   },
 ];
+
+export const pacientesIniciais: Paciente[] = [
+  {
+    id: 1,
+    nome: "Maria Silva",
+    cpf: "131.105.218-35",
+    email: "maria.silva@email.com",
+    telefone: "(11) 98765-4321",
+  },
+  {
+    id: 2,
+    nome: "João Santos",
+    cpf: "123.456.789-00",
+    email: "joao.santos@email.com",
+    telefone: "(11) 91234-5678",
+  },
+  {
+    id: 3,
+    nome: "Ana Costa",
+    cpf: "111.222.333-44",
+    email: "ana.costa@email.com",
+    telefone: "(11) 99999-8888",
+  }
+]
