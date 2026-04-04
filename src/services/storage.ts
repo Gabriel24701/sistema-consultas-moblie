@@ -7,8 +7,9 @@ const KEYS = {
   ESPECIALIDADES: "@consultas:especialidades",
   MEDICOS: "@consultas:medicos",
   CONSULTAS: "@consultas:consultas",
+  PACIENTE_LOGADO: "@consultas:pacienteLogado",  
+  PACIENTES: "@consultas:pacientes",              
 };
-
 // ========= ESPECIALIDADES =========
 
 export async function salvarEspecialidades(especialidades: Especialidade[]) {
