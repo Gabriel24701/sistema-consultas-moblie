@@ -132,3 +132,22 @@ export async function obterPacienteLogado(): Promise<Paciente | null> {
     return null;
   }
 }
+
+// Remove paciente logado (logout)
+export async function removerPacienteLogado() {
+  try {
+    console.log("Antes do logout - verificando storage...");
+    const antes = await AsyncStorage.getItem(KEYS.PACIENTE_LOGADO);
+    console.log("Paciente antes do logout:", 
+      antes ? JSON.parse(antes).nome : "nenhum");
+    
+    await AsyncStorage.removeItem(KEYS.PACIENTE_LOGADO);
+    console.log("AsyncStorage.removeItem executado");
+    
+    const depois = await AsyncStorage.getItem(KEYS.PACIENTE_LOGADO);
+    console.log("Paciente após logout:", 
+      depois ? JSON.parse(depois).nome : "nenhum (logout bem-sucedido)");
+  } catch (erro) {
+    console.error("Erro ao fazer logout:", erro);
+  }
+}
