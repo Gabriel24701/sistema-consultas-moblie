@@ -88,3 +88,23 @@ export async function obterConsultas(): Promise<Consulta[]> {
     return [];
   }
 }
+
+// ========== PACIENTES ==========
+// Salva lista de pacientes
+export async function salvarPacientes(pacientes:"../types/paciente.ts"[]) {
+  try {
+    await AsyncStorage.setItem(KEYS.PACIENTES, JSON.stringify(pacientes));
+  } catch (erro) {
+    console.error("Erro ao salvar pacientes:", erro);
+  }
+}
+// Busca lista de pacientes
+export async function obterPacientes(): Promise<"../types/paciente.ts"[]> {
+  try {
+    const dados = await AsyncStorage.getItem(KEYS.PACIENTES);
+    return dados ? JSON.parse(dados) : [];
+  } catch (erro) {
+    console.error("Erro ao obter pacientes:", erro);
+    return [];
+  }
+}
