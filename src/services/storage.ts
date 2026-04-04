@@ -109,7 +109,7 @@ export async function obterPacientes(): Promise<"../types/paciente.ts"[]> {
     return [];
   }
 }
-
+// Salva paciente logado
 export async function salvarPacienteLogado(paciente:Paciente) {
   try {
     console.log("Salvando paciente logado:", paciente.nome, `(${paciente.cpf})`);
@@ -117,5 +117,18 @@ export async function salvarPacienteLogado(paciente:Paciente) {
     console.log("Paciente salvo no storage com sucesso");
   } catch (erro) {
     console.error("Erro ao salvar paciente logado:", erro);
+  }
+}
+// Busca paciente logado
+export async function obterPacienteLogado(): Promise<Paciente | null> {
+  try {
+    const dados = await AsyncStorage.getItem(KEYS.PACIENTE_LOGADO);
+    const paciente = dados ? JSON.parse(dados) : null;
+    console.log("obterPacienteLogado - Resultado:", 
+      paciente ? `${paciente.nome} (${paciente.cpf})` : "nenhum");
+    return paciente;
+  } catch (erro) {
+    console.error("Erro ao obter paciente logado:", erro);
+    return null;
   }
 }
