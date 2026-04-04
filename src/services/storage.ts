@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Especialidade } from "../types/especialidade";
 import { Medico } from "../interfaces/medico";
 import { Consulta } from "../interfaces/consulta";
+import { Paciente } from "../types/paciente";
 
 const KEYS = {
   ESPECIALIDADES: "@consultas:especialidades",
@@ -90,7 +91,7 @@ export async function obterConsultas(): Promise<Consulta[]> {
 }
 
 // ========== PACIENTES ==========
-// Salva lista de pacientes
+
 export async function salvarPacientes(pacientes:"../types/paciente.ts"[]) {
   try {
     await AsyncStorage.setItem(KEYS.PACIENTES, JSON.stringify(pacientes));
@@ -106,5 +107,15 @@ export async function obterPacientes(): Promise<"../types/paciente.ts"[]> {
   } catch (erro) {
     console.error("Erro ao obter pacientes:", erro);
     return [];
+  }
+}
+
+export async function salvarPacienteLogado(paciente:Paciente) {
+  try {
+    console.log("Salvando paciente logado:", paciente.nome, `(${paciente.cpf})`);
+    await AsyncStorage.setItem(KEYS.PACIENTE_LOGADO, JSON.stringify(paciente));
+    console.log("Paciente salvo no storage com sucesso");
+  } catch (erro) {
+    console.error("Erro ao salvar paciente logado:", erro);
   }
 }
